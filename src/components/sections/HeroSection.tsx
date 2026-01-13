@@ -26,7 +26,7 @@ export const HeroSection = () => {
       />
       
       {/* Overlay */}
-      <div className="absolute inset-0 hero-overlay" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white/30" />
       
       {/* Animated fish silhouettes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">

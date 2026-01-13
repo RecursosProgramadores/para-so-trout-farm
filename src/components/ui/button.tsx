@@ -11,9 +11,9 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground",
+        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground focus:ring-primary/30",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:scale-105",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent/20 hover:text-accent-foreground text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // Hero CTA button - bold orange gradient with glow
         hero: "btn-cta text-primary-foreground px-8 py-4 text-lg tracking-wide uppercase hover:scale-105",
@@ -22,7 +22,7 @@ const buttonVariants = cva(
         // Outline on dark backgrounds
         outlineDark: "border-2 border-foreground/30 bg-transparent text-foreground hover:border-primary hover:text-primary hover:bg-primary/10",
         // Glass effect button
-        glass: "glass text-foreground hover:bg-foreground/10 border border-foreground/20",
+        glass: "glass text-foreground bg-white/60 hover:bg-foreground/10 border border-border",
       },
       size: {
         default: "h-10 px-4 py-2",

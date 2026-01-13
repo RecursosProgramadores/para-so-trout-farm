@@ -178,7 +178,7 @@ export const GallerySection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-background/95 z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-white/90 z-50 flex items-center justify-center shadow-elevated"
             onClick={closeLightbox}
           >
             {/* Close button */}

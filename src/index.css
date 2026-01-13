@@ -7,14 +7,14 @@
 @layer base {
   :root {
     /* Core brand colors - Black, Orange, Blue */
-    --background: 0 0% 5%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 100%; /* blanco */
+    --foreground: 0 0% 15%;  /* gris oscuro para texto */
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 98%; /* tarjetas casi blancas */
+    --card-foreground: 0 0% 15%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 15%;
 
     /* Primary - Vibrant Orange */
     --primary: 24 95% 53%;
@@ -24,8 +24,8 @@
     --secondary: 205 85% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
 
     /* Accent - Teal/Aqua for nature */
     --accent: 185 70% 40%;
@@ -34,8 +34,8 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
+    --border: 0 0% 85%;
+    --input: 0 0% 92%;
     --ring: 24 95% 53%;
 
     --radius: 0.75rem;
@@ -58,8 +58,8 @@
     /* Shadows */
     --shadow-glow-orange: 0 0 30px hsl(24 95% 53% / 0.4);
     --shadow-glow-blue: 0 0 30px hsl(205 85% 45% / 0.4);
-    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.5);
-    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.6);
+    --shadow-card: 0 2px 8px hsl(0 0% 0% / 0.08);
+    --shadow-elevated: 0 4px 24px hsl(0 0% 0% / 0.10);
 
     /* Typography */
     --font-heading: 'Montserrat', sans-serif;
@@ -76,28 +76,28 @@
   }
 
   .light {
-    --background: 40 20% 98%;
-    --foreground: 0 0% 10%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 15%;
 
-    --primary: 24 95% 50%;
+    --primary: 24 95% 53%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 205 85% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 40 15% 92%;
+    --muted: 0 0% 92%;
     --muted-foreground: 0 0% 40%;
 
     --accent: 185 70% 40%;
     --accent-foreground: 0 0% 100%;
 
-    --border: 40 15% 85%;
+    --border: 0 0% 85%;
     --input: 40 15% 90%;
     --ring: 24 95% 50%;
 
@@ -113,6 +113,10 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: 17px;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {

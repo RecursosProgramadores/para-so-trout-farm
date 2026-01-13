@@ -24,7 +24,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-card border-t border-border">
+    <footer className="relative bg-card border-t border-border shadow-sm">
       {/* Wave decoration */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary" />
       
