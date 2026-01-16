@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* PSIC GRANJA - Farm Therapy Palette & Trout Farm Base */
+    --background: 40 12% 98%;
+    --foreground: 220 12% 20%;
+    --card: 40 18% 97%;
+    --card-foreground: 220 12% 20%;
+    --popover: 40 15% 98%;
+    --popover-foreground: 220 12% 20%;
+    --primary: 28 90% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 200 70% 52%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 40 20% 94%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 175 55% 45%;
+    --accent-foreground: 0 0% 100%;
+    --border: 40 15% 85%;
+    --input: 40 18% 90%;
+    --ring: 28 90% 55%;
+    --destructive: 350 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.75rem;
+
+    /* Extended Palette */
+    --accent-teal: 175 55% 45%;
+    --nature-green: 145 50% 42%;
+    --grass-green: 130 55% 48%;
+    --success: 140 55% 42%;
+    --sunset-orange: 28 90% 55%;
+    --sunset-deep: 22 85% 48%;
+    --gold-warm: 42 80% 55%;
+    --sand-terracotta: 25 35% 80%;
+    --farm-beige: 40 28% 88%;
+    --farm-cream: 38 25% 92%;
+    --trout-blue: 205 75% 48%;
+    --deep-orange: 22 85% 48%;
+    --sky-blue: 200 55% 90%;
+    --calm-lavender: 260 28% 78%;
+    --water-light: 195 55% 88%;
+    --sand: 35 25% 92%;
+
+    /* Typography */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--sunset-orange)), hsl(var(--trout-blue)));
+    --gradient-cta: linear-gradient(to right, hsl(var(--sunset-orange)), hsl(var(--sunset-deep)));
+    --gradient-water: linear-gradient(180deg, hsl(var(--water-light)), hsl(var(--accent-teal)));
+    --gradient-farm: linear-gradient(135deg, hsl(var(--sky-blue)), hsl(var(--farm-cream)));
+
+    /* Shadows & Glows */
+    --shadow-glow-orange: 0 0 30px hsla(28, 90%, 55%, 0.4);
+    --shadow-glow-blue: 0 0 30px hsla(205, 75%, 48%, 0.4);
+    --shadow-card: 0 2px 8px hsla(220, 12%, 18%, 0.08);
+    --shadow-elevated: 0 4px 24px hsla(220, 12%, 18%, 0.10);
+
+    /* Sidebar */
+    --sidebar-background: 40 20% 96%;
+    --sidebar-foreground: 220 12% 25%;
+    --sidebar-primary: 28 90% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 175 55% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 40 15% 88%;
+    --sidebar-ring: 28 90% 55%;
+  }
+
+  .dark {
+    --background: 220 15% 12%;
+    --foreground: 40 15% 92%;
+    --card: 220 12% 15%;
+    --card-foreground: 40 15% 92%;
+    --popover: 220 12% 14%;
+    --popover-foreground: 40 15% 92%;
+    --primary: 28 85% 58%;
+    --primary-foreground: 220 15% 10%;
+    --secondary: 200 65% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 12% 18%;
+    --muted-foreground: 40 10% 65%;
+    --accent: 175 50% 48%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 10% 25%;
+    --input: 220 10% 22%;
+    --ring: 28 85% 58%;
+    --destructive: 350 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground font-body antialiased; font-family: var(--font-body); }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); @apply font-bold tracking-tight; }
+}
+
+@layer components {
+  /* Hero gradient overlay */
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      hsla(28, 90%, 55%, 0.1) 0%,
+      hsla(220, 12%, 20%, 0.5) 50%,
+      hsla(220, 12%, 20%, 0.7) 100%
+    );
+  }
+
+  /* CTA Button gradient */
+  .btn-cta {
+    @apply relative overflow-hidden font-heading font-bold tracking-wide text-white rounded-xl px-6 py-3;
+    background: linear-gradient(135deg, hsl(var(--sunset-orange)), hsl(var(--sunset-deep)));
+    box-shadow: 0 4px 20px -4px hsl(var(--sunset-orange) / 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px -4px hsl(var(--sunset-orange) / 0.5);
+  }
+
+  /* Water-themed button */
+  .btn-water {
+    @apply relative overflow-hidden font-heading font-semibold text-white rounded-xl px-6 py-3;
+    background: linear-gradient(135deg, hsl(var(--trout-blue)), hsl(var(--secondary)));
+    box-shadow: 0 4px 20px -4px hsl(var(--trout-blue) / 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .btn-water:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px -4px hsl(var(--trout-blue) / 0.5);
+  }
+
+  /* Card with glow effect */
+  .card-glow {
+    @apply relative bg-card rounded-xl overflow-hidden border border-border;
+    box-shadow: var(--shadow-card);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-glow:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-elevated), var(--shadow-glow-orange);
+  }
+
+  /* Parallax section */
+  .parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* Animated underline */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply backdrop-blur-md;
+    background: hsla(40, 12%, 98%, 0.85);
+    border: 1px solid hsla(var(--border), 0.5);
+  }
+
+  /* Trout wave animation */
+  .wave-bg {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23177cb0' fill-opacity='0.3' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: bottom;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* Shimmer effect */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--sunset-orange)) 0%,
+      hsl(var(--gold-warm)) 50%,
+      hsl(var(--sunset-orange)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* Pulse glow */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(var(--sunset-orange) / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(var(--sunset-orange) / 0.5); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--farm-cream));
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(var(--sunset-orange)), hsl(var(--trout-blue)));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--sunset-orange));
+}
