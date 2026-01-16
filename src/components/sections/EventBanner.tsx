@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Calendar, Trophy, Fish, Gift, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-
 const prizes = [
   { icon: Trophy, text: 'Trofeos' },
   { icon: Award, text: 'Diplomas' },

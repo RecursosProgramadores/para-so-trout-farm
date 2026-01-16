@@ -240,7 +240,6 @@ export const ContactSection = () => {
               ))}
             </div>
 
-
           </motion.div>
         </div>
       </div>
