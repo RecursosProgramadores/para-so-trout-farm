@@ -1,21 +1,49 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Fish, UtensilsCrossed, TreePine, Trophy, Truck, Sparkles } from 'lucide-react';
+import { Fish, UtensilsCrossed, TreePine, Trophy, Truck, Sparkles, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import eventImage from '@/assets/dia-pescador-event.jpg';
-import troutFishingImage from '@/assets/trout-fishing.jpg';
-import restaurantImage from '@/assets/restaurant.jpg';
-import miniFarmImage from '@/assets/mini-farm.jpg';
-import ownerJavierImage from '@/assets/owner-javier.jpg';
+import { EventBanner } from './EventBanner';
+
+// Import New Assets
+// Pesca de Truchas
+import pesca1 from '@/assets/PescadeTruchas/pesca1.jpg';
+import pesca2 from '@/assets/PescadeTruchas/pesca2.jpg';
+import pesca3 from '@/assets/PescadeTruchas/pesca3.jpg';
+
+// Restaurante Campestre
+import restaurante1 from '@/assets/RestauranteCampestre/restaurante1.jpg';
+import restaurante2 from '@/assets/RestauranteCampestre/restaurante2.jpg';
+import restaurante3 from '@/assets/RestauranteCampestre/restaurante3.jpg';
+import restaurante4 from '@/assets/RestauranteCampestre/restaurante4.jpg';
+import carta1 from '@/assets/RestauranteCampestre/Carta1.jpeg';
+import carta2 from '@/assets/RestauranteCampestre/Carta2.jpeg';
+
+// Paseo por la Granja
+import granja1 from '@/assets/PaseoporlaGranja/granja4.jpg';
+import granja2 from '@/assets/PaseoporlaGranja/granja2.jpg';
+import granja3 from '@/assets/PaseoporlaGranja/granja3.jpg';
+import granja4 from '@/assets/PaseoporlaGranja/granja1.jpg';
+
+// Pesca Deportiva
+import deportivo1 from '@/assets/PescaDeportiva/deportivo1.jpg';
+import deportivo2 from '@/assets/PescaDeportiva/deportivo2.jpg';
+import deportivo3 from '@/assets/PescaDeportiva/deportivo3.jpg';
+import deportivo4 from '@/assets/PescaDeportiva/deportivo4.jpg';
+
+// Ventas y Envíos
+import venta1 from '@/assets/VentasyEnvíos/venta1.jpg';
+import ventas from '@/assets/VentasyEnvíos/ventas.png';
+import ventas2 from '@/assets/VentasyEnvíos/ventas2.jpg';
 
 const experiences = [
   {
     id: 'pesca',
     icon: Fish,
     title: 'Pesca de Truchas',
-    subtitle: '¡Gratis actualmente!',
+    subtitle: '¡Popular! ¡Gratis actualmente!',
     description: 'Pesca tu propia trucha y prepárala en nuestro restaurante campestre. Una experiencia única para toda la familia.',
-    image: troutFishingImage,
+    image: pesca1,
+    galleryImages: [pesca1, pesca2, pesca3],
     highlight: true,
     features: ['Cañas de pesca incluidas', 'Asesoría para principiantes', 'Preparación al instante'],
     whatsappMessage: '¡Hola! Me gustaría reservar una experiencia de Pesca de Truchas en El Paraíso.'
@@ -26,7 +54,9 @@ const experiences = [
     title: 'Restaurante Campestre',
     subtitle: '90% disfrutan en sitio',
     description: 'Sabores frescos y auténticos. El 90% de nuestros clientes disfrutan platos de trucha preparados en nuestras instalaciones.',
-    image: restaurantImage,
+    image: restaurante1,
+    galleryImages: [restaurante1, restaurante2, restaurante3, restaurante4],
+    menuImages: [carta1, carta2],
     features: ['Trucha a la parrilla', 'Ceviche de trucha', 'Para llevar disponible'],
     whatsappMessage: '¡Hola! Quisiera reservar una mesa en su Restaurante Campestre.'
   },
@@ -36,7 +66,8 @@ const experiences = [
     title: 'Paseo por la Granja',
     subtitle: 'Tour gratuito',
     description: 'Tour gratuito por nuestras instalaciones, incluyendo nuestra mini-granja con cuyes, gallinas, pavos reales, gansos, patos y más.',
-    image: miniFarmImage,
+    image: granja1,
+    galleryImages: [granja1, granja2, granja3, granja4],
     features: ['Mini-granja interactiva', 'Importación de huevos de USA', 'Experiencia educativa'],
     whatsappMessage: '¡Hola! Me interesa realizar un Paseo por la Granja.'
   },
@@ -46,7 +77,8 @@ const experiences = [
     title: 'Pesca Deportiva',
     subtitle: 'Eventos anuales',
     description: 'Eventos anuales con trofeos, dinero en efectivo y diplomas. No te pierdas el especial del 29 de Junio.',
-    image: [troutFishingImage, eventImage],
+    image: deportivo1,
+    galleryImages: [deportivo1, deportivo2, deportivo3, deportivo4],
     features: ['Competencias oficiales', 'Premios increíbles', 'Día del Pescador'],
     whatsappMessage: '¡Hola! Quisiera más información y reservar para los Eventos de Pesca Deportiva (especialmente el del 29 de Junio).'
   },
@@ -56,40 +88,42 @@ const experiences = [
     title: 'Ventas y Envíos',
     subtitle: 'Solo en Cajamarca',
     description: 'Truchas frescas disponibles para compra. Envíos locales en toda la región de Cajamarca.',
-    image: ownerJavierImage,
+    image: ventas,
+    galleryImages: [ventas, venta1, ventas2],
     features: ['Trucha fresca', 'Envío mismo día', 'Precios competitivos'],
     whatsappMessage: '¡Hola! Quisiera hacer un pedido de truchas frescas para envío en Cajamarca.'
   },
 ];
 
-const quizQuestions = [
-  {
-    question: '¿Qué buscas para hoy?',
-    options: [
-      { text: 'Aventura en familia', result: 'pesca' },
-      { text: 'Cena romántica', result: 'restaurante' },
-      { text: 'Paseo tranquilo', result: 'granja' },
-      { text: 'Competencia de pesca', result: 'deportiva' },
-    ],
-  },
-];
 
 export const ExperiencesSection = () => {
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [quizResult, setQuizResult] = useState<string | null>(null);
+  const [galleryState, setGalleryState] = useState<{ open: boolean; images: string[]; title: string; currentIndex: number }>({
+    open: false,
+    images: [],
+    title: '',
+    currentIndex: 0
+  });
 
-  const scrollToContact = () => {
-    const element = document.querySelector('#contacto');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+
+  const openGallery = (images: string[], title: string) => {
+    setGalleryState({ open: true, images, title, currentIndex: 0 });
   };
 
-  const handleQuizAnswer = (result: string) => {
-    setQuizResult(result);
-    setShowQuiz(false);
-    setSelectedExperience(result);
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setGalleryState(prev => ({
+      ...prev,
+      currentIndex: (prev.currentIndex + 1) % prev.images.length
+    }));
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setGalleryState(prev => ({
+      ...prev,
+      currentIndex: (prev.currentIndex - 1 + prev.images.length) % prev.images.length
+    }));
   };
 
   return (
@@ -116,150 +150,260 @@ export const ExperiencesSection = () => {
             Vive la <span className="text-primary">Experiencia</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8" />
-          
-          {/* Quiz CTA */}
-          <motion.button
-            onClick={() => setShowQuiz(true)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary to-accent text-secondary-foreground px-6 py-3 rounded-full font-heading font-bold shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <Sparkles className="w-5 h-5" />
-            Descubre tu aventura ideal
-          </motion.button>
+
         </motion.div>
 
-        {/* Quiz Modal */}
+
+        {/* Gallery Modal */}
         <AnimatePresence>
-          {showQuiz && (
+          {galleryState.open && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-              onClick={() => setShowQuiz(false)}
+              className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[100] flex items-center justify-center cursor-pointer"
+              onClick={() => setGalleryState({ ...galleryState, open: false })}
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-card border border-border rounded-2xl p-8 max-w-md w-full"
+                className="w-full h-full relative flex flex-col items-center justify-center p-4 md:p-8 cursor-default"
                 onClick={(e) => e.stopPropagation()}
               >
-                <h3 className="text-2xl font-heading font-bold text-foreground mb-6 text-center">
-                  {quizQuestions[0].question}
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {quizQuestions[0].options.map((option) => (
-                    <motion.button
-                      key={option.text}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleQuizAnswer(option.result)}
-                      className="bg-muted hover:bg-primary/20 border border-border hover:border-primary text-foreground p-4 rounded-xl font-heading font-semibold transition-all"
-                    >
-                      {option.text}
-                    </motion.button>
-                  ))}
+
+                {/* Title */}
+                <div className="absolute top-8 left-1/2 -translate-x-1/2 z-40 text-center w-full px-4 pointer-events-none">
+                  <h3 className="text-xl md:text-3xl font-heading font-black text-white/90 tracking-tight drop-shadow-2xl">
+                    {galleryState.title}
+                  </h3>
+                </div>
+
+                <div className="relative w-full max-w-7xl h-full flex flex-col items-center justify-center pt-20 pb-20 pointer-events-none">
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prevImage(e);
+                    }}
+                    className="absolute left-0 lg:left-8 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all z-30 backdrop-blur-md shadow-2xl pointer-events-auto"
+                  >
+                    <ChevronLeft className="w-8 h-8" />
+                  </button>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      nextImage(e);
+                    }}
+                    className="absolute right-0 lg:right-8 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all z-30 backdrop-blur-md shadow-2xl pointer-events-auto"
+                  >
+                    <ChevronRight className="w-8 h-8" />
+                  </button>
+
+                  {/* Main Image Display */}
+                  <div className="w-full h-full flex items-center justify-center">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={galleryState.currentIndex}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.05 }}
+                        transition={{ duration: 0.4 }}
+                        className="relative w-full h-full flex items-center justify-center cursor-pointer pointer-events-auto"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          nextImage(e);
+                        }}
+                      >
+                        {/* Wrapper for image-specific positioning */}
+                        <div className="relative group/box max-w-full max-h-[70vh]">
+                          <img
+                            src={galleryState.images[galleryState.currentIndex]}
+                            alt={`${galleryState.title} ${galleryState.currentIndex + 1}`}
+                            className="max-w-full max-h-[70vh] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] rounded-2xl border border-white/10"
+                          />
+
+                          {/* Close Button - Locked strictly to the image area */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setGalleryState({ ...galleryState, open: false });
+                            }}
+                            className="absolute top-3 right-3 md:top-5 md:right-5 w-11 h-11 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center shadow-xl transition-all hover:scale-110 active:scale-95 z-[60] border-2 border-white/30"
+                            title="Cerrar Galería"
+                          >
+                            <X className="w-6 h-6" />
+                          </button>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Image Counter & Thumbnail Indicators Wrapper */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 w-full z-40 pointer-events-auto">
+                    <div className="bg-white/10 text-white px-6 py-2 rounded-full text-sm font-black backdrop-blur-md shadow-lg border border-white/10">
+                      {galleryState.currentIndex + 1} / {galleryState.images.length}
+                    </div>
+
+                    <div className="flex justify-center gap-2">
+                      {galleryState.images.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setGalleryState(prev => ({ ...prev, currentIndex: i }));
+                          }}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${i === galleryState.currentIndex
+                            ? 'bg-primary w-8'
+                            : 'bg-white/20 hover:bg-white/40'
+                            }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Experiences Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Experiences List */}
+        <div className="flex flex-col gap-20 max-w-6xl mx-auto">
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className={`card-glow group cursor-pointer ${
-                selectedExperience === exp.id || quizResult === exp.id
-                  ? 'ring-2 ring-primary'
-                  : ''
-              } ${exp.highlight ? 'md:col-span-2 lg:col-span-1' : ''}`}
-              onClick={() => setSelectedExperience(exp.id)}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className={`flex flex-col md:flex-row gap-10 lg:gap-16 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''
+                }`}
             >
               {/* Image Container */}
-              <div className="relative h-48 overflow-hidden flex">
-                {Array.isArray(exp.image) ? (
-                  exp.image.map((img, i) => (
-                    <div key={i} className="flex-1 h-full overflow-hidden border-r border-white/10 last:border-0 relative">
-                      <img
-                        src={img}
-                        alt={`${exp.title} ${i + 1}`}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-black/10" />
+              <div className="w-full md:w-1/2 group">
+                <div className={`relative h-[300px] md:h-[450px] rounded-[3rem] overflow-hidden bg-card/50 backdrop-blur-sm border border-white/10 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] ${selectedExperience === exp.id
+                  ? 'ring-4 ring-primary/30 border-primary'
+                  : ''
+                  }`}
+                  onClick={() => setSelectedExperience(exp.id)}
+                >
+                  {Array.isArray(exp.image) ? (
+                    <div className="flex h-full">
+                      {exp.image.map((img, i) => (
+                        <div key={i} className="flex-1 h-full overflow-hidden border-r border-white/10 last:border-0 relative">
+                          <img
+                            src={img}
+                            alt={`${exp.title} ${i + 1}`}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                          />
+                          <div className="absolute inset-0 bg-black/20" />
+                        </div>
+                      ))}
                     </div>
-                  ))
-                ) : (
-                  <img
-                    src={exp.image}
-                    alt={exp.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none" />
-                
-                {/* Icon Badge */}
-                <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-primary/90 flex items-center justify-center shadow-lg z-10">
-                  <exp.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
+                  ) : (
+                    <img
+                      src={exp.image}
+                      alt={exp.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-                {/* Highlight Badge */}
-                {exp.highlight && (
-                  <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-heading font-bold shadow-md z-10">
-                    ¡Popular!
+                  {/* Icon Badge */}
+                  <div className="absolute top-8 left-8 w-16 h-16 rounded-2xl bg-primary/95 flex items-center justify-center shadow-2xl z-10 backdrop-blur-sm transform -rotate-6 group-hover:rotate-0 transition-transform duration-500">
+                    <exp.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
-                )}
+
+                  {/* Highlight Badge */}
+                  {exp.highlight && (
+                    <div className="absolute top-8 right-8 bg-gradient-to-r from-secondary to-accent text-secondary-foreground px-6 py-2.5 rounded-full text-sm font-heading font-black shadow-xl z-10 animate-pulse">
+                      ¡Popular!
+                    </div>
+                  )}
+
+                  {/* Image Overlays for visual depth */}
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[3rem]" />
+                </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <h3 className="text-xl font-heading font-black text-foreground group-hover:text-primary transition-colors tracking-tight">
-                      {exp.title}
-                    </h3>
-                    <span className="text-sm text-primary font-heading font-bold uppercase tracking-wider">{exp.subtitle}</span>
+              {/* Content Container */}
+              <div className="w-full md:w-1/2 space-y-6 lg:space-y-8 px-4 md:px-0">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-1 bg-primary rounded-full" />
+                    <span className="text-secondary font-heading font-black text-sm uppercase tracking-[0.3em]">{exp.subtitle}</span>
                   </div>
+                  <h3 className="text-4xl lg:text-5xl font-heading font-black text-foreground tracking-tight leading-[1.1]">
+                    {exp.title}
+                  </h3>
                 </div>
-                <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
+
+                <p className="text-muted-foreground text-lg lg:text-xl leading-relaxed font-medium max-w-xl">
                   {exp.description}
                 </p>
 
-                {/* Features */}
-                <ul className="space-y-2 mb-8">
+                {/* Features Grid */}
+                <div className="grid sm:grid-cols-2 gap-4 lg:gap-6 pt-4">
                   {exp.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-3 text-sm text-muted-foreground font-medium">
-                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
-                      {feature}
-                    </li>
+                    <div key={feature} className="flex items-center gap-4 group/feature">
+                      <div className="w-3 h-3 rounded-full bg-primary shadow-[0_0_15px_rgba(var(--primary),0.6)] flex-shrink-0 group-hover/feature:scale-125 transition-transform" />
+                      <span className="text-lg text-foreground/90 font-bold">{feature}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
 
-                <Button
-                  variant="outline"
-                  size="lg"
-                  asChild
-                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all font-heading font-bold rounded-xl"
-                >
-                  <a 
-                    href={`https://wa.me/51929003722?text=${encodeURIComponent(exp.whatsappMessage)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-4 pt-8">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="rounded-2xl font-heading font-black text-base px-10 h-14 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all active:scale-95 shadow-md bg-primary/5"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openGallery(exp.galleryImages, exp.title);
+                    }}
                   >
-                    Reservar
-                  </a>
-                </Button>
+                    Vista
+                  </Button>
+
+                  {exp.id === 'restaurante' && exp.menuImages && (
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="rounded-2xl font-heading font-black text-base px-10 h-14 transition-all active:scale-95 bg-secondary/10 hover:bg-secondary/20 text-secondary border-2 border-secondary/20 shadow-lg"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openGallery(exp.menuImages, "Nuestra Carta");
+                      }}
+                    >
+                      Ver Carta
+                    </Button>
+                  )}
+
+                  <Button
+                    size="lg"
+                    asChild
+                    className="rounded-2xl font-heading font-black text-base px-10 h-14 shadow-xl hover:shadow-primary/30 transition-all active:scale-95"
+                  >
+                    <a
+                      href={`https://wa.me/51929003722?text=${encodeURIComponent(exp.whatsappMessage)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Reservar
+                    </a>
+                  </Button>
+                </div>
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Event Banner Integration - At the end as requested */}
+        <div className="mt-32 pt-20 border-t border-border/40">
+          <EventBanner />
         </div>
       </div>
     </section>

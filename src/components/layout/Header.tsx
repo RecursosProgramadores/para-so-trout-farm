@@ -37,11 +37,10 @@ export const Header = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'glass py-3 shadow-lg border-b border-border' 
-          : 'bg-transparent py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+        ? 'bg-white/95 backdrop-blur-md py-3 shadow-md border-b border-border'
+        : 'bg-white py-4 shadow-sm'
+        }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
@@ -54,9 +53,9 @@ export const Header = () => {
             scrollToSection('#inicio');
           }}
         >
-          <img 
-            src={logo} 
-            alt="Piscigranja El Paraíso" 
+          <img
+            src={logo}
+            alt="Piscigranja El Paraíso"
             className="h-12 w-auto object-contain drop-shadow-sm group-hover:drop-shadow-md transition-all"
           />
         </motion.a>
@@ -67,9 +66,8 @@ export const Header = () => {
             <motion.a
               key={item.href}
               href={item.href}
-              className={`relative font-heading font-medium transition-colors link-underline py-1 ${
-                isScrolled ? 'text-foreground/80 hover:text-primary' : 'text-white hover:text-primary-foreground'
-              }`}
+              className={`relative font-heading font-bold transition-colors hover:text-primary py-1 ${isScrolled ? 'text-foreground/90' : 'text-foreground'
+                }`}
               whileHover={{ y: -2 }}
               onClick={(e) => {
                 e.preventDefault();
@@ -83,36 +81,27 @@ export const Header = () => {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
-          {/* Language Toggle */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-            className={`hidden sm:flex items-center gap-2 transition-colors ${
-              isScrolled ? 'text-foreground/70 hover:text-foreground' : 'text-white hover:bg-white/10'
-            }`}
-          >
-            <Globe className="w-4 h-4" />
-            <span className="text-xs font-heading uppercase">{language}</span>
-          </Button>
 
-          {/* CTA Button */}
           <Button
             variant="hero"
             size="sm"
             className="hidden md:flex"
-            onClick={() => scrollToSection('#contacto')}
+            asChild
           >
-            Reservar
+            <a
+              href="https://wa.me/51929003722?text=Hola!%20Me%20gustaría%20solicitar%20una%20reserva%20en%20Piscigranja%20El%20Paraíso."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Reservar
+            </a>
           </Button>
 
           {/* Mobile Menu Toggle */}
           <Button
             variant="ghost"
             size="icon"
-            className={`lg:hidden transition-colors ${
-              isScrolled ? 'text-foreground' : 'text-white hover:bg-white/10'
-            }`}
+            className="lg:hidden transition-colors text-foreground hover:bg-black/5"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -127,7 +116,7 @@ export const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass mt-2 mx-4 rounded-xl overflow-hidden"
+            className="lg:hidden bg-white mt-2 mx-4 rounded-xl overflow-hidden shadow-2xl border border-border"
           >
             <div className="p-6 flex flex-col gap-4">
               {navItems.map((item, index) => (
@@ -150,9 +139,15 @@ export const Header = () => {
                 variant="hero"
                 size="lg"
                 className="mt-4 w-full"
-                onClick={() => scrollToSection('#contacto')}
+                asChild
               >
-                Reserva Ahora
+                <a
+                  href="https://wa.me/51929003722?text=Hola!%20Me%20gustaría%20solicitar%20una%20reserva%20en%20Piscigranja%20El%20Paraíso."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Reserva Ahora
+                </a>
               </Button>
             </div>
           </motion.nav>

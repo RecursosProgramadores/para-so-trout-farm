@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Calendar, Trophy, Fish, Gift, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+
 const prizes = [
   { icon: Trophy, text: 'Trofeos' },
   { icon: Award, text: 'Diplomas' },
@@ -18,8 +19,8 @@ export const EventBanner = () => {
   };
 
   return (
-    <section id="evento" className="relative py-24 overflow-hidden bg-muted/30">
-      <div className="relative z-10 container mx-auto px-4">
+    <div id="evento" className="relative py-12 overflow-hidden">
+      <div className="relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <motion.div
@@ -41,8 +42,8 @@ export const EventBanner = () => {
             </h2>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              ¡No te pierdas nuestro evento anual más esperado! Celebramos el Día del Pescador 
-              con la <span className="text-primary font-semibold">suelta de 800 truchas</span> al río, 
+              ¡No te pierdas nuestro evento anual más esperado! Celebramos el Día del Pescador
+              con la <span className="text-primary font-semibold">suelta de 800 truchas</span> al río,
               competencias de pesca deportiva y premios increíbles.
             </p>
 
@@ -69,20 +70,26 @@ export const EventBanner = () => {
               <Button
                 variant="hero"
                 size="xl"
-                onClick={scrollToContact}
-                className="w-full sm:w-auto"
+                asChild
+                className="w-full sm:w-auto font-black"
               >
-                Inscríbete Ahora
+                <a
+                  href="https://wa.me/51929003722?text=Hola!%20Me%20gustaría%20inscribirme%20en%20el%20Evento%20del%20Día%20del%20Pescador."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Inscríbete Ahora
+                </a>
               </Button>
               <Button
                 variant="outline"
                 size="xl"
                 asChild
-                className="w-full sm:w-auto border-primary/50 text-foreground hover:bg-primary/10"
+                className="w-full sm:w-auto border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all active:scale-95 shadow-md bg-primary/5 font-heading font-black"
               >
-                <a 
-                  href="https://drive.google.com/file/d/1ZoAgmK7nqNQXRSolo-IY8dff0zS7NLcE/view?usp=sharing" 
-                  target="_blank" 
+                <a
+                  href="https://drive.google.com/file/d/1ZoAgmK7nqNQXRSolo-IY8dff0zS7NLcE/view?usp=sharing"
+                  target="_blank"
                   rel="noopener noreferrer"
                 >
                   Ver Tríptico del Evento
@@ -102,7 +109,7 @@ export const EventBanner = () => {
             <div className="relative group w-full max-w-[640px]">
               {/* Decorative Glow */}
               <div className="absolute -inset-4 bg-gradient-to-tr from-primary to-secondary rounded-[2rem] blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
-              
+
               {/* Video Container */}
               <div className="relative rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl aspect-video bg-black">
                 <iframe
@@ -136,6 +143,6 @@ export const EventBanner = () => {
           </motion.div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };

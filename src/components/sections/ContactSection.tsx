@@ -107,7 +107,7 @@ export const ContactSection = () => {
                       name="nombre"
                       value={formData.nombre}
                       onChange={handleChange}
-                      placeholder="Tu nombre"
+                      placeholder="Juan Lopez"
                       required
                       className="glass-input border-primary/20 focus:border-primary transition-all rounded-xl py-6"
                     />
@@ -137,7 +137,7 @@ export const ContactSection = () => {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="tu@email.com"
+                    placeholder="juanlopez@email.com"
                     required
                     className="glass-input border-primary/20 focus:border-primary transition-all rounded-xl py-6"
                   />
@@ -239,6 +239,7 @@ export const ContactSection = () => {
                 </motion.div>
               ))}
             </div>
+
 
           </motion.div>
         </div>

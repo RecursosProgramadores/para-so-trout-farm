@@ -20,14 +20,14 @@ export const HeroSection = () => {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBackground})` }}
       />
-      
+
       {/* Overlay - Subtler to let image shine, but dark enough at top for header readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent" />
-      
+
       {/* Animated fish silhouettes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
         <motion.div
@@ -55,7 +55,7 @@ export const HeroSection = () => {
           className="max-w-5xl mx-auto"
         >
           {/* Badge removed per user request */}
- 
+
           {/* Main Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ export const HeroSection = () => {
               Piscigranja El Paraíso
             </span>
           </motion.h1>
- 
+
           {/* Subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -84,7 +84,7 @@ export const HeroSection = () => {
               Pesca deportiva, gastronomía fresca y experiencias inolvidables.
             </p>
           </motion.div>
- 
+
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -95,10 +95,16 @@ export const HeroSection = () => {
             <Button
               variant="hero"
               size="xl"
-              onClick={() => scrollToSection('#contacto')}
+              asChild
               className="animate-pulse-glow w-full sm:w-auto"
             >
-              Reserva tu Experiencia
+              <a
+                href="https://wa.me/51929003722?text=Hola!%20Me%20gustaría%20solicitar%20una%20reserva%20en%20Piscigranja%20El%20Paraíso."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Reserva tu Experiencia
+              </a>
             </Button>
             <Button
               variant="secondary"
@@ -109,7 +115,7 @@ export const HeroSection = () => {
               Ver Experiencias
             </Button>
           </motion.div>
- 
+
           {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -138,7 +144,7 @@ export const HeroSection = () => {
         </motion.div>
       </div>
 
-          {/* Scroll Indicator removed per user request */}
+      {/* Scroll Indicator removed per user request */}
     </section>
   );
 };
