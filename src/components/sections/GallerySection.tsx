@@ -1,71 +1,54 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, X, ChevronLeft, ChevronRight, Image as ImageIcon, Video } from 'lucide-react';
+import { Play, X, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ownerImage from '@/assets/owner-javier.jpg';
 
-// Import New Assets
-import pesca1 from '@/assets/PescadeTruchas/pesca1.jpg';
-import pesca2 from '@/assets/PescadeTruchas/pesca2.jpg';
-import pesca3 from '@/assets/PescadeTruchas/pesca3.jpg';
-
-import restaurante1 from '@/assets/RestauranteCampestre/restaurante1.jpg';
-import restaurante2 from '@/assets/RestauranteCampestre/restaurante2.jpg';
-import restaurante3 from '@/assets/RestauranteCampestre/restaurante3.jpg';
-import restaurante4 from '@/assets/RestauranteCampestre/restaurante4.jpg';
-
-import granja1 from '@/assets/PaseoporlaGranja/granja4.jpg';
-import granja2 from '@/assets/PaseoporlaGranja/granja2.jpg';
-import granja3 from '@/assets/PaseoporlaGranja/granja3.jpg';
-import granja4 from '@/assets/PaseoporlaGranja/granja1.jpg';
-
-import deportivo1 from '@/assets/PescaDeportiva/deportivo1.jpg';
-import deportivo2 from '@/assets/PescaDeportiva/deportivo2.jpg';
-import deportivo3 from '@/assets/PescaDeportiva/deportivo3.jpg';
-import deportivo4 from '@/assets/PescaDeportiva/deportivo4.jpg';
-
-import venta1 from '@/assets/VentasyEnvíos/venta1.jpg';
-import ventas from '@/assets/VentasyEnvíos/ventas.png';
-import ventas2 from '@/assets/VentasyEnvíos/ventas2.jpg';
+// Import New Assets from galeria folder
+import g1 from '@/assets/galeria/galeria.jpg';
+import g2 from '@/assets/galeria/galeria2.jpg';
+import g3 from '@/assets/galeria/galeria3.jpg';
+import g4 from '@/assets/galeria/galeria4.jpg';
+import g5 from '@/assets/galeria/galeria5.jpg';
+import g6 from '@/assets/galeria/galeria6.jpg';
+import g7 from '@/assets/galeria/galeria7.jpg';
+import g8 from '@/assets/galeria/galeria8.jpg';
+import g9 from '@/assets/galeria/galeria9.jpg';
+import g10 from '@/assets/galeria/galeria10.jpg';
+import g11 from '@/assets/galeria/galeria11.jpg';
+import g12 from '@/assets/galeria/galeria12.jpg';
+import g13 from '@/assets/galeria/galeria13.jpg';
+import g14 from '@/assets/galeria/galeria14.jpg';
+import g15 from '@/assets/galeria/galeria15.jpg';
+import g16 from '@/assets/galeria/galeria16.jpg';
 
 interface GalleryItem {
-  type: 'image' | 'video';
-  src?: string;
-  thumbnail?: string;
-  videoId?: string;
-  category: 'pesca' | 'restaurante' | 'granja' | 'evento' | 'ventas';
+  type: 'image';
+  src: string;
   caption: string;
 }
 
 const galleryItems: GalleryItem[] = [
-  { type: 'image', src: pesca1, category: 'pesca', caption: 'Emoción en la pesca de truchas' },
-  { type: 'image', src: restaurante1, category: 'restaurante', caption: 'Nuestra trucha a la parrilla estrella' },
-  { type: 'image', src: granja1, category: 'granja', caption: 'Interacción con nuestra mini-granja' },
-  { type: 'image', src: deportivo1, category: 'evento', caption: 'Competencia oficial de pesca deportiva' },
-  { type: 'image', src: pesca2, category: 'pesca', caption: 'Captura del día en El Paraíso' },
-  { type: 'image', src: restaurante2, category: 'restaurante', caption: 'Ambiente acogedor en nuestro restaurante' },
-  { type: 'image', src: granja2, category: 'granja', caption: 'Conociendo a los animales de la granja' },
-  { type: 'image', src: deportivo2, category: 'evento', caption: 'Premiación y alegría' },
-  { type: 'image', src: pesca3, category: 'pesca', caption: 'Técnicas de pesca para todos' },
-  { type: 'image', src: restaurante3, category: 'restaurante', caption: 'Platos frescos preparados al instante' },
-  { type: 'image', src: granja3, category: 'granja', caption: 'Diversión educativa para niños' },
-  { type: 'image', src: deportivo3, category: 'evento', caption: 'Liberación de 800 truchas' },
-  { type: 'image', src: restaurante4, category: 'restaurante', caption: 'Vistas increíbles desde tu mesa' },
-  { type: 'image', src: granja4, category: 'granja', caption: 'Paseo interactivo gratuito' },
-  { type: 'image', src: deportivo4, category: 'evento', caption: 'Trofeos del Día del Pescador' },
-  { type: 'image', src: ventas, category: 'ventas', caption: 'Truchas frescas listas para envío' },
-  { type: 'image', src: venta1, category: 'ventas', caption: 'Empaque de calidad para tu trucha' },
-  { type: 'image', src: ventas2, category: 'ventas', caption: 'Distribución en todo Cajamarca' },
-  { type: 'video', thumbnail: pesca1, videoId: '80V6p-OiKkw', category: 'evento', caption: 'Resumen del Día del Pescador' },
+  { type: 'image', src: g1, caption: 'Piscigranja El Paraíso - Vista Panorámica' },
+  { type: 'image', src: g2, caption: 'Nuestros estanques de crianza' },
+  { type: 'image', src: g3, caption: 'Experiencia de pesca deportiva' },
+  { type: 'image', src: g4, caption: 'Entorno natural y aire puro' },
+  { type: 'image', src: g5, caption: 'Alimentación de nuestras truchas' },
+  { type: 'image', src: g6, caption: 'Momentos inolvidables en familia' },
+  { type: 'image', src: g7, caption: 'Pesca exitosa del día' },
+  { type: 'image', src: g8, caption: 'Nuestras truchas de alta calidad' },
+  { type: 'image', src: g9, caption: 'Paisajes relajantes' },
+  { type: 'image', src: g10, caption: 'Diversión para los más pequeños' },
+  { type: 'image', src: g11, caption: 'Gastronomía fresca' },
+  { type: 'image', src: g12, caption: 'Atención personalizada' },
+  { type: 'image', src: g13, caption: 'Instalaciones de primer nivel' },
+  { type: 'image', src: g14, caption: 'Naturaleza en cada rincón' },
+  { type: 'image', src: g15, caption: 'Tranquilidad y paz' },
+  { type: 'image', src: g16, caption: 'Ven y conócenos' },
 ];
 
 export const GallerySection = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [filter, setFilter] = useState<'all' | 'image' | 'video'>('all');
-
-  const filteredItems = filter === 'all'
-    ? galleryItems
-    : galleryItems.filter(item => item.type === filter);
+  const [isTourOpen, setIsTourOpen] = useState(false);
 
   const openLightbox = (index: number) => {
     setSelectedIndex(index);
@@ -77,13 +60,13 @@ export const GallerySection = () => {
 
   const goNext = () => {
     if (selectedIndex !== null) {
-      setSelectedIndex((selectedIndex + 1) % filteredItems.length);
+      setSelectedIndex((selectedIndex + 1) % galleryItems.length);
     }
   };
 
   const goPrev = () => {
     if (selectedIndex !== null) {
-      setSelectedIndex((selectedIndex - 1 + filteredItems.length) % filteredItems.length);
+      setSelectedIndex((selectedIndex - 1 + galleryItems.length) % galleryItems.length);
     }
   };
 
@@ -98,44 +81,15 @@ export const GallerySection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <span className="inline-block text-primary font-heading font-semibold text-sm tracking-wider uppercase mb-4">
             Galería Multimedia
           </span>
           <h2 className="text-4xl md:text-5xl font-heading font-black text-foreground mb-6">
-            Fotos y <span className="text-secondary">Videos</span>
+            Nuestra <span className="text-secondary">Galería de Fotos</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8" />
-
-          {/* Filter Buttons */}
-          <div className="flex items-center justify-center gap-4">
-            <Button
-              variant={filter === 'all' ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setFilter('all')}
-            >
-              Todos
-            </Button>
-            <Button
-              variant={filter === 'image' ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setFilter('image')}
-              className="flex items-center gap-2"
-            >
-              <ImageIcon className="w-4 h-4" />
-              Fotos
-            </Button>
-            <Button
-              variant={filter === 'video' ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setFilter('video')}
-              className="flex items-center gap-2"
-            >
-              <Video className="w-4 h-4" />
-              Videos
-            </Button>
-          </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
         </motion.div>
 
         {/* Gallery Grid */}
@@ -144,35 +98,26 @@ export const GallerySection = () => {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
           <AnimatePresence mode="popLayout">
-            {filteredItems.map((item, index) => (
+            {galleryItems.map((item, index) => (
               <motion.div
-                key={item.caption}
+                key={index}
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.3 }}
-                className={`relative group cursor-pointer overflow-hidden rounded-xl ${index === 0 ? 'col-span-2 row-span-2' : ''
+                className={`relative group cursor-pointer overflow-hidden rounded-xl ${index % 7 === 0 ? 'col-span-2 row-span-2' : ''
                   }`}
                 onClick={() => openLightbox(index)}
               >
                 <img
-                  src={item.type === 'image' ? item.src : item.thumbnail}
+                  src={item.src}
                   alt={item.caption}
-                  className="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover aspect-square md:aspect-auto md:min-h-[250px] group-hover:scale-110 transition-transform duration-500"
                 />
 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                {/* Video play button */}
-                {item.type === 'video' && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Play className="w-8 h-8 text-primary ml-1" />
-                    </div>
-                  </div>
-                )}
 
                 {/* Caption */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -185,29 +130,93 @@ export const GallerySection = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* 360 Virtual Tour CTA */}
+        {/* 360 Virtual Tour CTA - Optimized Visuals */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-20 text-center"
         >
-          <div className="glass border-primary/20 rounded-2xl p-8 max-w-2xl mx-auto shadow-glow-blue">
-            <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
-              🎯 Tour Virtual 360°
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Explora nuestra piscigranja desde cualquier lugar del mundo con nuestro tour virtual inmersivo.
-            </p>
-            <Button variant="water" size="lg">
-              Iniciar Tour Virtual
-            </Button>
-            <p className="text-xs text-primary/70 mt-4 font-semibold">
-              *Disponible próximamente
-            </p>
+          <div className="relative group max-w-4xl mx-auto">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-gradient-xy"></div>
+
+            <div className="relative glass-dark bg-black/60 backdrop-blur-2xl border-white/20 rounded-[2.5rem] p-10 md:p-16 shadow-2xl overflow-hidden">
+              <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/30 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-secondary/30 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col items-center gap-6">
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg transform rotate-12"
+                >
+                  <Play className="w-10 h-10 text-white fill-current" />
+                </motion.div>
+
+                <h3 className="text-3xl md:text-5xl font-heading font-black text-white tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+                  🎯 Tour Virtual <span className="text-primary">360°</span>
+                </h3>
+
+                <p className="text-white/90 text-lg md:text-xl font-medium max-w-2xl leading-relaxed drop-shadow-md">
+                  Sumérgete en una experiencia única y explora nuestra piscigranja desde cualquier lugar del mundo con nuestro tour virtual inmersivo de alta definición.
+                </p>
+
+                <Button
+                  variant="hero"
+                  size="xl"
+                  onClick={() => setIsTourOpen(true)}
+                  className="mt-4 px-12 py-8 text-xl rounded-2xl animate-pulse-glow"
+                >
+                  Iniciar Tour Virtual
+                </Button>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Tour Virtual Modal */}
+      <AnimatePresence>
+        {isTourOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[100] flex items-center justify-center p-4 md:p-10"
+            onClick={() => setIsTourOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-6xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setIsTourOpen(false)}
+                className="absolute top-4 right-4 w-12 h-12 rounded-full bg-red-500/80 hover:bg-red-500 text-white flex items-center justify-center shadow-2xl transition-all hover:scale-110 active:scale-95 z-[110] border-2 border-white/30 backdrop-blur-sm"
+                title="Cerrar Tour"
+              >
+                <X className="w-7 h-7" />
+              </button>
+
+              <iframe
+                src="https://player.vimeo.com/video/1158552847?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                className="absolute inset-0 w-full h-full"
+                title="Tour Virtual Piscigranja"
+              />
+            </motion.div>
+
+            <div className="absolute top-8 left-1/2 -translate-x-1/2 z-[110] text-center w-full px-4 pointer-events-none">
+              <h3 className="text-2xl md:text-4xl font-heading font-black text-white drop-shadow-2xl">
+                Tour Virtual Inmersivo 360°
+              </h3>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Lightbox */}
       <AnimatePresence>
@@ -219,7 +228,6 @@ export const GallerySection = () => {
             className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 md:p-10"
             onClick={closeLightbox}
           >
-            {/* Navigation */}
             <button
               className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-all z-10 backdrop-blur-md border border-white/20"
               onClick={(e) => {
@@ -239,7 +247,6 @@ export const GallerySection = () => {
               <ChevronRight className="w-8 h-8" />
             </button>
 
-            {/* Content */}
             <motion.div
               key={selectedIndex}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -249,27 +256,12 @@ export const GallerySection = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative group/box max-w-full">
-                {filteredItems[selectedIndex].type === 'image' ? (
-                  <img
-                    src={filteredItems[selectedIndex].src}
-                    alt={filteredItems[selectedIndex].caption}
-                    className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-white/10"
-                  />
-                ) : (
-                  <div className="aspect-video w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={`https://www.youtube.com/embed/${filteredItems[selectedIndex].videoId}?autoplay=1`}
-                      title={filteredItems[selectedIndex].caption}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                )}
+                <img
+                  src={galleryItems[selectedIndex].src}
+                  alt={galleryItems[selectedIndex].caption}
+                  className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-white/10"
+                />
 
-                {/* Integrated Close Button on Image/Video */}
                 <button
                   onClick={closeLightbox}
                   className="absolute top-4 right-4 w-12 h-12 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center shadow-2xl transition-all hover:scale-110 active:scale-95 z-[60] border-2 border-white/30"
@@ -280,7 +272,7 @@ export const GallerySection = () => {
               </div>
 
               <p className="text-center text-white font-heading font-black text-xl mt-6 drop-shadow-md bg-black/40 px-6 py-2 rounded-full backdrop-blur-md border border-white/10">
-                {filteredItems[selectedIndex].caption}
+                {galleryItems[selectedIndex].caption}
               </p>
             </motion.div>
           </motion.div>

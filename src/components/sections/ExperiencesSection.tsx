@@ -35,6 +35,15 @@ import venta1 from '@/assets/VentasyEnvíos/venta1.jpg';
 import ventas from '@/assets/VentasyEnvíos/ventas.png';
 import ventas2 from '@/assets/VentasyEnvíos/ventas2.jpg';
 
+// Paseo por las Truchas (Alimentación)
+import alimentacion1 from '@/assets/paseoTruchas/alimentacion.jpg';
+import alimentacion2 from '@/assets/paseoTruchas/alimentacion1.jpg';
+import alimentacion3 from '@/assets/paseoTruchas/alimentacion2.jpg';
+import alimentacion4 from '@/assets/paseoTruchas/alimetacion3.jpg';
+import alimentacion5 from '@/assets/paseoTruchas/alimentacion4.jpg';
+import alimentacion6 from '@/assets/paseoTruchas/alimetacion5.jpg';
+import alimentacion7 from '@/assets/paseoTruchas/alimentacion7.jpg';
+
 const experiences = [
   {
     id: 'pesca',
@@ -57,7 +66,7 @@ const experiences = [
     image: restaurante1,
     galleryImages: [restaurante1, restaurante2, restaurante3, restaurante4],
     menuImages: [carta1, carta2],
-    features: ['Trucha a la parrilla', 'Ceviche de trucha', 'Para llevar disponible'],
+    features: ['Trucha Frita', 'Ceviche de Trucha', 'Chicharon de Trucha'],
     whatsappMessage: '¡Hola! Quisiera reservar una mesa en su Restaurante Campestre.'
   },
   {
@@ -68,15 +77,26 @@ const experiences = [
     description: 'Tour gratuito por nuestras instalaciones, incluyendo nuestra mini-granja con cuyes, gallinas, pavos reales, gansos, patos y más.',
     image: granja1,
     galleryImages: [granja1, granja2, granja3, granja4],
-    features: ['Mini-granja interactiva', 'Importación de huevos de USA', 'Experiencia educativa'],
+    features: ['Mini-granja interactiva', 'Experiencia educativa'],
     whatsappMessage: '¡Hola! Me interesa realizar un Paseo por la Granja.'
+  },
+  {
+    id: 'paseo-truchas',
+    icon: Sparkles,
+    title: 'Paseo por las Truchas',
+    subtitle: 'Alimentación Interactiva',
+    description: 'Una experiencia educativa donde podrás observar de cerca el ciclo de vida de nuestras truchas y participar activamente en su alimentación.',
+    image: alimentacion1,
+    galleryImages: [alimentacion1, alimentacion2, alimentacion3, alimentacion4, alimentacion5, alimentacion6, alimentacion7],
+    features: ['Alimentación de truchas', 'Observación guiada', 'Actividad educativa', 'Diversión garantizada'],
+    whatsappMessage: '¡Hola! Me gustaría información sobre el Paseo por las Truchas y la alimentación interactiva.'
   },
   {
     id: 'deportiva',
     icon: Trophy,
     title: 'Pesca Deportiva',
-    subtitle: 'Eventos anuales',
-    description: 'Eventos anuales con trofeos, dinero en efectivo y diplomas. No te pierdas el especial del 29 de Junio.',
+    subtitle: 'Dia del Pescador',
+    description: 'Dia del Pescador con trofeos, dinero en efectivo y diplomas. No te pierdas el especial del 29 de Junio.',
     image: deportivo1,
     galleryImages: [deportivo1, deportivo2, deportivo3, deportivo4],
     features: ['Competencias oficiales', 'Premios increíbles', 'Día del Pescador'],

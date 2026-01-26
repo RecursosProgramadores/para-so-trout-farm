@@ -10,7 +10,7 @@ const contactInfo = [
   { icon: MapPin, label: 'Ubicación', value: 'Cajamarca - La Mora, Perú' },
   { icon: Mail, label: 'Email', value: 'javioq@hotmail.com', href: 'mailto:javioq@hotmail.com' },
   { icon: Phone, label: 'Teléfono', value: '+51 929 003 722', href: 'tel:+51929003722' },
-  { icon: Clock, label: 'Horario', value: 'Lun - Dom: 8:00 AM - 6:00 PM' },
+  { icon: Clock, label: 'Horario', value: 'Lun - Dom: 10:00 AM - 4:00 PM' },
 ];
 
 export const ContactSection = () => {
@@ -26,7 +26,7 @@ export const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Construct WhatsApp message
     const message = `*Nueva Consulta desde la Web - El Paraíso*%0A%0A` +
       `*Nombre:* ${formData.nombre}%0A` +
@@ -38,15 +38,15 @@ export const ContactSection = () => {
 
     // Simulate short delay for UX
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     // Redirect to WhatsApp
     window.open(whatsappUrl, '_blank');
-    
+
     toast({
       title: "¡Redirigiendo a WhatsApp!",
       description: "Se ha generado tu mensaje para contacto directo.",
     });
-    
+
     setFormData({ nombre: '', email: '', telefono: '', mensaje: '' });
     setIsSubmitting(false);
   };
@@ -60,7 +60,7 @@ export const ContactSection = () => {
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-radial from-primary/10 to-transparent blur-3xl opacity-50" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -88,14 +88,14 @@ export const ContactSection = () => {
           >
             <div className="glass border-primary/20 rounded-2xl p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden group">
               <div className="absolute -inset-24 bg-primary/5 blur-3xl rounded-full group-hover:bg-primary/10 transition-colors duration-700" />
-              
+
               <h3 className="relative text-2xl font-heading font-black text-foreground mb-8 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                   <Fish className="w-6 h-6 text-primary" />
                 </div>
                 Envíanos un mensaje
               </h3>
-              
+
               <form onSubmit={handleSubmit} className="relative space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -126,7 +126,7 @@ export const ContactSection = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="email" className="block text-sm font-heading font-bold text-foreground/80 ml-1">
                     Correo electrónico
@@ -142,7 +142,7 @@ export const ContactSection = () => {
                     className="glass-input border-primary/20 focus:border-primary transition-all rounded-xl py-6"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="mensaje" className="block text-sm font-heading font-bold text-foreground/80 ml-1">
                     Mensaje
@@ -194,7 +194,7 @@ export const ContactSection = () => {
             {/* Google Maps Embed */}
             <div className="relative rounded-2xl overflow-hidden h-72 border-4 border-white shadow-2xl">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124919.41661942513!2d-78.59375899999999!3d-7.163638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91b25afe8d2c8bbb%3A0x50c7ab44c1d60cf7!2sCajamarca%2C%20Peru!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.39847530115026!2d-78.318467!3d-7.1979151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91b2476111d880ef%3A0x23c4b49af7429ebb!2sEL%20PARAISO!5e0!3m2!1ses!2spe!4v1768923550537!5m2!1ses!2spe"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -225,8 +225,8 @@ export const ContactSection = () => {
                         {info.label}
                       </span>
                       {info.href ? (
-                        <a 
-                          href={info.href} 
+                        <a
+                          href={info.href}
                           className="block text-foreground font-heading font-bold text-sm sm:text-base hover:text-primary transition-colors"
                         >
                           {info.value}

@@ -144,8 +144,8 @@ export const Footer = () => {
               © 2026 Piscigranja "El Paraíso" – Cajamarca, Perú. Pasión por la excelencia.
             </p>
             <div className="flex items-center gap-8 text-sm text-white/80 font-bold">
-              <Link to="/politica-de-privacidad" className="hover:text-white transition-colors">Privacidad</Link>
-              <Link to="/terminos-y-condiciones" className="hover:text-white transition-colors">Términos</Link>
+              <Link to="/politica-de-privacidad" className="hover:text-white transition-colors">Política de privacidad</Link>
+              <Link to="/terminos-y-condiciones" className="hover:text-white transition-colors">Términos y condiciones</Link>
             </div>
           </div>
           
