@@ -21,7 +21,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-[100vh] flex items-center overflow-hidden bg-black">
+    <section id="inicio" className="relative min-h-[100vh] flex items-center overflow-hidden bg-white">
       {/* Background with Transition */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Static Background Image (Visible until video loads) */}
@@ -33,21 +33,20 @@ export const HeroSection = () => {
           style={{ backgroundImage: `url(${heroBackground})` }}
         />
 
-        {/* Video Container */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center bg-white">
           <iframe
-            src="https://player.vimeo.com/video/1158552847?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+            src="https://player.vimeo.com/video/1158552847?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1&quality=1080p"
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture"
+            className="absolute min-w-full min-h-full w-[100vw] h-[100vh]"
             style={{
-              position: 'absolute',
               top: '50%',
               left: '50%',
-              width: '100%',
-              height: '100%',
-              transform: 'translate(-50%, -50%) scale(1.35)',
-              transformOrigin: 'center center',
-              objectFit: 'cover'
+              transform: 'translate(-50%, -50%) scale(1.5)', // Increased scale for full coverage
+              pointerEvents: 'none',
+              objectFit: 'cover',
+              width: '177.78vh', // 16:9 aspect ratio relative to height
+              height: '56.25vw'  // 16:9 aspect ratio relative to width
             }}
             title="Piscigranja"
             onLoad={() => setIsVideoLoaded(true)}

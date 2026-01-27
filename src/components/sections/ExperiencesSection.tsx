@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Fish, UtensilsCrossed, TreePine, Trophy, Truck, Sparkles, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Fish, UtensilsCrossed, TreePine, Trophy, Truck, Sparkles, X, ChevronLeft, ChevronRight, MousePointer2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { EventBanner } from './EventBanner';
+import useEmblaCarousel from 'embla-carousel-react';
 
 // Import New Assets
 // Pesca de Truchas
@@ -118,6 +119,29 @@ const experiences = [
 
 export const ExperiencesSection = () => {
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: 'start',
+    containScroll: 'trimSnaps'
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+  }, [emblaApi, onSelect]);
+
+  const scrollTo = useCallback((index: number) => {
+    if (emblaApi) emblaApi.scrollTo(index);
+  }, [emblaApi]);
+
   const [galleryState, setGalleryState] = useState<{ open: boolean; images: string[]; title: string; currentIndex: number }>({
     open: false,
     images: [],
@@ -288,8 +312,104 @@ export const ExperiencesSection = () => {
           )}
         </AnimatePresence>
 
-        {/* Experiences List */}
-        <div className="flex flex-col gap-20 max-w-6xl mx-auto">
+        {/* Mobile View: Carousel */}
+        <div className="md:hidden">
+          <div className="relative">
+            <div className="overflow-hidden rounded-[2.5rem]" ref={emblaRef}>
+              <div className="flex">
+                {experiences.map((exp) => (
+                  <div key={exp.id} className="flex-[0_0_100%] min-w-0 pl-1">
+                    <div className="px-2">
+                      <motion.div
+                        className="bg-card/50 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-xl"
+                      >
+                        {/* Image */}
+                        <div className="relative h-[400px]">
+                          <img
+                            src={Array.isArray(exp.image) ? exp.image[0] : exp.image}
+                            alt={exp.title}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                          {/* Floating Badges */}
+                          <div className="absolute top-6 left-6 w-12 h-12 rounded-xl bg-primary flex items-center justify-center shadow-lg">
+                            <exp.icon className="w-6 h-6 text-white" />
+                          </div>
+
+                          {exp.highlight && (
+                            <div className="absolute top-6 right-6 bg-secondary text-white px-4 py-1.5 rounded-full text-xs font-black shadow-lg">
+                              ¡Popular!
+                            </div>
+                          )}
+
+                          {/* Content Overlay */}
+                          <div className="absolute bottom-0 left-0 right-0 p-8 space-y-4">
+                            <div className="space-y-1">
+                              <span className="text-secondary font-heading font-black text-[10px] uppercase tracking-widest">{exp.subtitle}</span>
+                              <h3 className="text-3xl font-heading font-black text-white leading-tight">
+                                {exp.title}
+                              </h3>
+                            </div>
+
+                            <p className="text-gray-200 text-sm font-medium line-clamp-2">
+                              {exp.description}
+                            </p>
+
+                            <div className="flex gap-3 pt-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="flex-1 rounded-xl font-black text-xs h-12 border-primary text-primary hover:bg-primary/10"
+                                onClick={() => openGallery(exp.galleryImages, exp.title)}
+                              >
+                                Ver Galería
+                              </Button>
+                              <Button
+                                size="sm"
+                                asChild
+                                className="flex-1 rounded-xl font-black text-xs h-12 shadow-lg"
+                              >
+                                <a
+                                  href={`https://wa.me/51929003722?text=${encodeURIComponent(exp.whatsappMessage)}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Reservar
+                                </a>
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Carousel Pagination Dots */}
+            <div className="flex justify-center gap-2 mt-8">
+              {experiences.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => scrollTo(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${i === selectedIndex ? 'w-8 bg-primary' : 'w-2 bg-primary/20'
+                    }`}
+                />
+              ))}
+            </div>
+
+            <div className="flex justify-center items-center gap-2 mt-4 text-muted-foreground animate-pulse">
+              <MousePointer2 className="w-4 h-4 rotate-90" />
+              <span className="text-[10px] font-bold uppercase tracking-widest">Desliza para explorar</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop View: Vertical List */}
+        <div className="hidden md:flex flex-col gap-20 max-w-6xl mx-auto">
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.id}

@@ -101,7 +101,7 @@ export const EventBanner = () => {
                 className="w-full sm:w-auto border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all active:scale-95 shadow-md bg-primary/5 font-heading font-black"
               >
                 <a
-                  href="/BASES PESCA 2025.pdf"
+                  href="src/assets/BASESPESCA2025.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
