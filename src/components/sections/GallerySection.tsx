@@ -71,7 +71,7 @@ export const GallerySection = () => {
   };
 
   return (
-    <section id="galeria" className="py-24 bg-background relative overflow-hidden">
+    <section id="galeria" className="py-24 bg-background relative overflow-hidden scroll-mt-28">
       {/* Background decoration */}
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-radial from-secondary/10 to-transparent blur-3xl" />
 

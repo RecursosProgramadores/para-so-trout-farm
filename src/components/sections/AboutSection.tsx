@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from '@/components/ui/button';
 
 const values = [
   { icon: Heart, title: 'Pasión', description: 'Amamos lo que hacemos y lo transmitimos en cada experiencia.' },
@@ -15,7 +16,7 @@ const values = [
 
 export const AboutSection = () => {
   return (
-    <section id="nosotros" className="py-24 bg-background relative overflow-hidden">
+    <section id="nosotros" className="py-24 bg-background relative overflow-hidden scroll-mt-28">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-radial from-primary/10 to-transparent blur-2xl" />
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-radial from-secondary/10 to-transparent blur-2xl" />
@@ -99,6 +100,24 @@ export const AboutSection = () => {
                 recreativa para nuestros visitantes, promoviendo el <span className="text-secondary font-semibold underline decoration-primary/30">turismo vivencial</span> y
                 el contacto directo con la naturaleza.
               </p>
+
+              <div className="pt-4">
+                <Button
+                  variant="hero"
+                  size="lg"
+                  asChild
+                  className="rounded-2xl font-heading font-black text-base px-8 h-14 shadow-xl hover:shadow-primary/30 transition-all active:scale-95 group/btn"
+                >
+                  <a
+                    href="/TRIPTICOELPARAISO.pdf"
+                    download="TRIPTICOELPARAISO.pdf"
+                    className="flex items-center gap-3"
+                  >
+                    <Award className="w-5 h-5 group-hover/btn:rotate-12 transition-transform" />
+                    Triptico Informativo
+                  </a>
+                </Button>
+              </div>
             </div>
 
             {/* Values Section */}

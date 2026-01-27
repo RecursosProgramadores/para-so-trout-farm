@@ -15,7 +15,7 @@ const footerLinks = [
 
 const socialLinks = [
   { icon: Youtube, href: 'https://www.youtube.com/@javierordonezquiroz6312', label: 'YouTube' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
+  { icon: Facebook, href: 'https://www.facebook.com/share/1B4Y8Hf9cs/', label: 'Facebook' },
   { icon: Instagram, href: '#', label: 'Instagram' },
 ];
 
@@ -96,7 +96,7 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm text-white/90">
                 <MapPin className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                <span className="font-medium">Cajamarca - La Mora, Perú</span>
+                <span className="font-medium">Cajamarca - Caserio La Perla _ Namora</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-white/90">
                 <Mail className="w-5 h-5 text-white flex-shrink-0" />

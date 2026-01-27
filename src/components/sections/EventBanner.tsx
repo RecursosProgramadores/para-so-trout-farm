@@ -27,7 +27,7 @@ export const EventBanner = () => {
   };
 
   return (
-    <div id="evento" className="relative py-12 overflow-hidden">
+    <div id="evento" className="relative py-12 overflow-hidden scroll-mt-28">
       <div className="relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -101,9 +101,8 @@ export const EventBanner = () => {
                 className="w-full sm:w-auto border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all active:scale-95 shadow-md bg-primary/5 font-heading font-black"
               >
                 <a
-                  href="src/assets/BASESPESCA2025.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/BASESPESCA2025.pdf"
+                  download="BASESPESCA2025.pdf"
                 >
                   Bases del Concurso
                 </a>

@@ -1,9 +1,8 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Fish, UtensilsCrossed, TreePine, Trophy, Truck, Sparkles, X, ChevronLeft, ChevronRight, MousePointer2 } from 'lucide-react';
+import { Fish, UtensilsCrossed, TreePine, Trophy, Truck, Sparkles, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { EventBanner } from './EventBanner';
-import useEmblaCarousel from 'embla-carousel-react';
 
 // Import New Assets
 // Pesca de Truchas
@@ -119,28 +118,6 @@ const experiences = [
 
 export const ExperiencesSection = () => {
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
-    align: 'start',
-    containScroll: 'trimSnaps'
-  });
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
-  }, [emblaApi, onSelect]);
-
-  const scrollTo = useCallback((index: number) => {
-    if (emblaApi) emblaApi.scrollTo(index);
-  }, [emblaApi]);
 
   const [galleryState, setGalleryState] = useState<{ open: boolean; images: string[]; title: string; currentIndex: number }>({
     open: false,
@@ -180,21 +157,24 @@ export const ExperiencesSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
+        {/* Section Header - Refined & Optimized */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-16 md:mb-24"
         >
-          <span className="inline-block text-primary font-heading font-semibold text-sm tracking-wider uppercase mb-4">
-            ¿Qué te espera?
+          <span className="inline-block text-primary font-heading font-bold text-xs md:text-sm tracking-[0.3em] uppercase mb-4">
+            Explora el Paraíso
           </span>
-          <h2 className="text-4xl md:text-5xl font-heading font-black text-foreground mb-6">
-            Vive la <span className="text-primary">Experiencia</span>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-foreground mb-6 leading-tight">
+            Nuestros <span className="text-primary">Servicios</span> Exclusivos
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8" />
-
+          <div className="flex items-center justify-center gap-4">
+            <div className="w-12 md:w-20 h-1 bg-primary/30 rounded-full" />
+            <div className="w-2 md:w-3 h-2 md:h-3 rounded-full bg-primary" />
+            <div className="w-12 md:w-20 h-1 bg-primary/30 rounded-full" />
+          </div>
         </motion.div>
 
 
@@ -312,232 +292,214 @@ export const ExperiencesSection = () => {
           )}
         </AnimatePresence>
 
-        {/* Mobile View: Carousel */}
-        <div className="md:hidden">
-          <div className="relative">
-            <div className="overflow-hidden rounded-[2.5rem]" ref={emblaRef}>
-              <div className="flex">
-                {experiences.map((exp) => (
-                  <div key={exp.id} className="flex-[0_0_100%] min-w-0 pl-1">
-                    <div className="px-2">
-                      <motion.div
-                        className="bg-card/50 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-xl"
+        {/* Unified Experiences List - Handles Mobile (Vertical) and Desktop (Side-by-Side) */}
+        <div className="space-y-16 md:space-y-32 max-w-7xl mx-auto">
+          {experiences.map((exp, index) => (
+            <div
+              key={exp.id}
+              id={exp.id}
+              className="scroll-mt-32"
+            >
+              {/* Mobile View Card - Visible only on small screens */}
+              <div className="md:hidden">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card/30 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col"
+                >
+                  {/* Image Container */}
+                  <div className="relative h-[280px] w-full">
+                    <img
+                      src={Array.isArray(exp.image) ? exp.image[0] : exp.image}
+                      alt={exp.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent h-20" />
+
+                    {/* Floating Badges */}
+                    <div className="absolute top-5 left-5 w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg border border-white/20">
+                      <exp.icon className="w-5 h-5 text-white" />
+                    </div>
+
+                    {exp.highlight && (
+                      <div className="absolute top-5 right-5 bg-secondary text-white px-3 py-1.5 rounded-full text-[10px] font-black shadow-lg border border-white/20">
+                        ¡Popular!
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-7 space-y-4">
+                    <div className="space-y-1">
+                      <span className="text-secondary font-heading font-black text-[10px] uppercase tracking-[0.2em]">{exp.subtitle}</span>
+                      <h3 className="text-2xl font-heading font-black text-foreground leading-tight">
+                        {exp.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-muted-foreground text-sm font-medium leading-relaxed">
+                      {exp.description}
+                    </p>
+
+                    <div className="flex gap-4 pt-2">
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="flex-1 rounded-2xl font-black text-xs h-12 border-primary/40 text-primary hover:bg-primary/5 transition-all active:scale-95"
+                        onClick={() => openGallery(exp.galleryImages, exp.title)}
                       >
-                        {/* Image */}
-                        <div className="relative h-[400px]">
-                          <img
-                            src={Array.isArray(exp.image) ? exp.image[0] : exp.image}
-                            alt={exp.title}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                          {/* Floating Badges */}
-                          <div className="absolute top-6 left-6 w-12 h-12 rounded-xl bg-primary flex items-center justify-center shadow-lg">
-                            <exp.icon className="w-6 h-6 text-white" />
-                          </div>
-
-                          {exp.highlight && (
-                            <div className="absolute top-6 right-6 bg-secondary text-white px-4 py-1.5 rounded-full text-xs font-black shadow-lg">
-                              ¡Popular!
-                            </div>
-                          )}
-
-                          {/* Content Overlay */}
-                          <div className="absolute bottom-0 left-0 right-0 p-8 space-y-4">
-                            <div className="space-y-1">
-                              <span className="text-secondary font-heading font-black text-[10px] uppercase tracking-widest">{exp.subtitle}</span>
-                              <h3 className="text-3xl font-heading font-black text-white leading-tight">
-                                {exp.title}
-                              </h3>
-                            </div>
-
-                            <p className="text-gray-200 text-sm font-medium line-clamp-2">
-                              {exp.description}
-                            </p>
-
-                            <div className="flex gap-3 pt-2">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="flex-1 rounded-xl font-black text-xs h-12 border-primary text-primary hover:bg-primary/10"
-                                onClick={() => openGallery(exp.galleryImages, exp.title)}
-                              >
-                                Ver Galería
-                              </Button>
-                              <Button
-                                size="sm"
-                                asChild
-                                className="flex-1 rounded-xl font-black text-xs h-12 shadow-lg"
-                              >
-                                <a
-                                  href={`https://wa.me/51929003722?text=${encodeURIComponent(exp.whatsappMessage)}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  Reservar
-                                </a>
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
+                        Galería
+                      </Button>
+                      <Button
+                        size="lg"
+                        asChild
+                        className="flex-1 rounded-2xl font-black text-xs h-12 shadow-lg shadow-primary/20 transition-all active:scale-95"
+                      >
+                        <a
+                          href={`https://wa.me/51929003722?text=${encodeURIComponent(exp.whatsappMessage)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Reservar
+                        </a>
+                      </Button>
                     </div>
                   </div>
-                ))}
+                </motion.div>
               </div>
-            </div>
 
-            {/* Carousel Pagination Dots */}
-            <div className="flex justify-center gap-2 mt-8">
-              {experiences.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => scrollTo(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${i === selectedIndex ? 'w-8 bg-primary' : 'w-2 bg-primary/20'
+              {/* Desktop View Content - Visible only on large screens */}
+              <div className="hidden md:block">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1, duration: 0.6 }}
+                  className={`flex flex-col md:flex-row gap-10 lg:gap-16 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''
                     }`}
-                />
-              ))}
-            </div>
-
-            <div className="flex justify-center items-center gap-2 mt-4 text-muted-foreground animate-pulse">
-              <MousePointer2 className="w-4 h-4 rotate-90" />
-              <span className="text-[10px] font-bold uppercase tracking-widest">Desliza para explorar</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop View: Vertical List */}
-        <div className="hidden md:flex flex-col gap-20 max-w-6xl mx-auto">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-              className={`flex flex-col md:flex-row gap-10 lg:gap-16 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''
-                }`}
-            >
-              {/* Image Container */}
-              <div className="w-full md:w-1/2 group">
-                <div className={`relative h-[300px] md:h-[450px] rounded-[3rem] overflow-hidden bg-card/50 backdrop-blur-sm border border-white/10 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] ${selectedExperience === exp.id
-                  ? 'ring-4 ring-primary/30 border-primary'
-                  : ''
-                  }`}
-                  onClick={() => setSelectedExperience(exp.id)}
                 >
-                  {Array.isArray(exp.image) ? (
-                    <div className="flex h-full">
-                      {exp.image.map((img, i) => (
-                        <div key={i} className="flex-1 h-full overflow-hidden border-r border-white/10 last:border-0 relative">
-                          <img
-                            src={img}
-                            alt={`${exp.title} ${i + 1}`}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                          />
-                          <div className="absolute inset-0 bg-black/20" />
+                  {/* Image Container */}
+                  <div className="w-full md:w-1/2 group">
+                    <div className={`relative h-[300px] md:h-[450px] rounded-[3.5rem] overflow-hidden bg-card/50 backdrop-blur-sm border border-white/10 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] ${selectedExperience === exp.id
+                      ? 'ring-4 ring-primary/30 border-primary'
+                      : ''
+                      }`}
+                      onClick={() => setSelectedExperience(exp.id)}
+                    >
+                      {Array.isArray(exp.image) ? (
+                        <div className="flex h-full">
+                          {exp.image.map((img, i) => (
+                            <div key={i} className="flex-1 h-full overflow-hidden border-r border-white/10 last:border-0 relative">
+                              <img
+                                src={img}
+                                alt={`${exp.title} ${i + 1}`}
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                              />
+                              <div className="absolute inset-0 bg-black/20" />
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <img
+                          src={exp.image}
+                          alt={exp.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+                      {/* Icon Badge */}
+                      <div className="absolute top-8 left-8 w-16 h-16 rounded-2xl bg-primary/95 flex items-center justify-center shadow-2xl z-10 backdrop-blur-sm transform -rotate-6 group-hover:rotate-0 transition-transform duration-500">
+                        <exp.icon className="w-8 h-8 text-primary-foreground" />
+                      </div>
+
+                      {/* Highlight Badge */}
+                      {exp.highlight && (
+                        <div className="absolute top-8 right-8 bg-gradient-to-r from-secondary to-accent text-secondary-foreground px-6 py-2.5 rounded-full text-sm font-heading font-black shadow-xl z-10 animate-pulse">
+                          ¡Popular!
+                        </div>
+                      )}
+
+                      {/* Image Overlays for visual depth */}
+                      <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[3.5rem]" />
+                    </div>
+                  </div>
+
+                  {/* Content Container */}
+                  <div className="w-full md:w-1/2 space-y-6 lg:space-y-8">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-1 bg-primary rounded-full" />
+                        <span className="text-secondary font-heading font-black text-sm uppercase tracking-[0.3em]">{exp.subtitle}</span>
+                      </div>
+                      <h3 className="text-4xl lg:text-5xl font-heading font-black text-foreground tracking-tight leading-[1.1]">
+                        {exp.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-muted-foreground text-lg lg:text-xl leading-relaxed font-medium max-w-xl">
+                      {exp.description}
+                    </p>
+
+                    {/* Features Grid */}
+                    <div className="grid sm:grid-cols-2 gap-4 lg:gap-6 pt-4">
+                      {exp.features.map((feature) => (
+                        <div key={feature} className="flex items-center gap-4 group/feature">
+                          <div className="w-3 h-3 rounded-full bg-primary shadow-[0_0_15px_rgba(var(--primary),0.6)] flex-shrink-0 group-hover/feature:scale-125 transition-transform" />
+                          <span className="text-lg text-foreground/90 font-bold">{feature}</span>
                         </div>
                       ))}
                     </div>
-                  ) : (
-                    <img
-                      src={exp.image}
-                      alt={exp.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-                  {/* Icon Badge */}
-                  <div className="absolute top-8 left-8 w-16 h-16 rounded-2xl bg-primary/95 flex items-center justify-center shadow-2xl z-10 backdrop-blur-sm transform -rotate-6 group-hover:rotate-0 transition-transform duration-500">
-                    <exp.icon className="w-8 h-8 text-primary-foreground" />
-                  </div>
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap gap-4 pt-8">
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="rounded-2xl font-heading font-black text-base px-10 h-14 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all active:scale-95 shadow-md bg-primary/5"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openGallery(exp.galleryImages, exp.title);
+                        }}
+                      >
+                        Ver Galería
+                      </Button>
 
-                  {/* Highlight Badge */}
-                  {exp.highlight && (
-                    <div className="absolute top-8 right-8 bg-gradient-to-r from-secondary to-accent text-secondary-foreground px-6 py-2.5 rounded-full text-sm font-heading font-black shadow-xl z-10 animate-pulse">
-                      ¡Popular!
+                      {exp.id === 'restaurante' && exp.menuImages && (
+                        <Button
+                          variant="secondary"
+                          size="lg"
+                          className="rounded-2xl font-heading font-black text-base px-10 h-14 transition-all active:scale-95 bg-secondary/10 hover:bg-secondary/20 text-secondary border-2 border-secondary/20 shadow-lg"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openGallery(exp.menuImages, "Nuestra Carta");
+                          }}
+                        >
+                          Ver Carta
+                        </Button>
+                      )}
+
+                      <Button
+                        size="lg"
+                        asChild
+                        className="rounded-2xl font-heading font-black text-base px-10 h-14 shadow-xl hover:shadow-primary/30 transition-all active:scale-95"
+                      >
+                        <a
+                          href={`https://wa.me/51929003722?text=${encodeURIComponent(exp.whatsappMessage)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Reservar Ahora
+                        </a>
+                      </Button>
                     </div>
-                  )}
-
-                  {/* Image Overlays for visual depth */}
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[3rem]" />
-                </div>
-              </div>
-
-              {/* Content Container */}
-              <div className="w-full md:w-1/2 space-y-6 lg:space-y-8 px-4 md:px-0">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-1 bg-primary rounded-full" />
-                    <span className="text-secondary font-heading font-black text-sm uppercase tracking-[0.3em]">{exp.subtitle}</span>
                   </div>
-                  <h3 className="text-4xl lg:text-5xl font-heading font-black text-foreground tracking-tight leading-[1.1]">
-                    {exp.title}
-                  </h3>
-                </div>
-
-                <p className="text-muted-foreground text-lg lg:text-xl leading-relaxed font-medium max-w-xl">
-                  {exp.description}
-                </p>
-
-                {/* Features Grid */}
-                <div className="grid sm:grid-cols-2 gap-4 lg:gap-6 pt-4">
-                  {exp.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-4 group/feature">
-                      <div className="w-3 h-3 rounded-full bg-primary shadow-[0_0_15px_rgba(var(--primary),0.6)] flex-shrink-0 group-hover/feature:scale-125 transition-transform" />
-                      <span className="text-lg text-foreground/90 font-bold">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-wrap gap-4 pt-8">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="rounded-2xl font-heading font-black text-base px-10 h-14 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all active:scale-95 shadow-md bg-primary/5"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openGallery(exp.galleryImages, exp.title);
-                    }}
-                  >
-                    Vista
-                  </Button>
-
-                  {exp.id === 'restaurante' && exp.menuImages && (
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="rounded-2xl font-heading font-black text-base px-10 h-14 transition-all active:scale-95 bg-secondary/10 hover:bg-secondary/20 text-secondary border-2 border-secondary/20 shadow-lg"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openGallery(exp.menuImages, "Nuestra Carta");
-                      }}
-                    >
-                      Ver Carta
-                    </Button>
-                  )}
-
-                  <Button
-                    size="lg"
-                    asChild
-                    className="rounded-2xl font-heading font-black text-base px-10 h-14 shadow-xl hover:shadow-primary/30 transition-all active:scale-95"
-                  >
-                    <a
-                      href={`https://wa.me/51929003722?text=${encodeURIComponent(exp.whatsappMessage)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Reservar
-                    </a>
-                  </Button>
-                </div>
+                </motion.div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

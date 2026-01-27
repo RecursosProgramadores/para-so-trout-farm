@@ -56,7 +56,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contacto" className="py-24 bg-card relative overflow-hidden">
+    <section id="contacto" className="py-24 bg-card relative overflow-hidden scroll-mt-28">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-radial from-primary/10 to-transparent blur-3xl opacity-50" />

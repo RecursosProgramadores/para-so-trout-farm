@@ -7,7 +7,7 @@ import heroBackground from '@/assets/hero-background.jpg';
 const stats = [
   { icon: Star, value: '15+', label: 'Años de experiencia' },
   { icon: Fish, value: '800+', label: 'Truchas en eventos' },
-  { icon: MapPin, value: 'Cajamarca', label: 'La Mora, Perú' },
+  { icon: MapPin, value: 'Cajamarca', label: 'Namora, Perú' },
 ];
 
 export const HeroSection = () => {
@@ -55,11 +55,11 @@ export const HeroSection = () => {
       </div>
 
       {/* Optimized Overlay for Left-Aligned Text */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-[2]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/20 z-[2]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent z-[2]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/20 z-[2]" />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-32 pb-20 md:pt-40 md:pb-24">
+      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="max-w-4xl text-left">
           {/* Main Heading */}
           <motion.div
@@ -67,12 +67,8 @@ export const HeroSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-black mb-6 leading-[1.1] drop-shadow-2xl">
-              <span className="text-white">Bienvenido a</span>
-              <br />
-              <span className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent filter drop-shadow-sm">
-                Piscigranja El Paraíso
-              </span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black mb-4 leading-[1.1] drop-shadow-2xl">
+              <span className="text-white">Vive la experiencia natural</span>
             </h1>
           </motion.div>
 
@@ -81,9 +77,9 @@ export const HeroSection = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="mb-10 max-w-2xl"
+            className="mb-8 max-w-2xl"
           >
-            <p className="text-lg sm:text-xl md:text-2xl text-white font-body leading-relaxed drop-shadow-lg font-medium border-l-4 border-primary pl-6 py-2">
+            <p className="text-base sm:text-lg md:text-xl text-white font-body leading-relaxed drop-shadow-lg font-medium border-l-4 border-primary pl-5 py-1">
               Donde la <span className="text-primary font-black">naturaleza</span> y la{' '}
               <span className="text-secondary font-black">aventura</span> se encuentran.
               <br className="hidden sm:block" />
@@ -96,13 +92,13 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="flex flex-col sm:flex-row items-start gap-5 mb-16"
+            className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-12"
           >
             <Button
               variant="hero"
-              size="xl"
+              size="lg"
               asChild
-              className="animate-pulse-glow w-full sm:w-auto px-10"
+              className="animate-pulse-glow w-full sm:w-auto px-8"
             >
               <a
                 href="https://wa.me/51929003722?text=Hola!%20Me%20gustaría%20solicitar%20una%20reserva%20en%20Piscigranja%20El%20Paraíso."
@@ -114,20 +110,20 @@ export const HeroSection = () => {
             </Button>
             <Button
               variant="secondary"
-              size="xl"
+              size="lg"
               onClick={() => scrollToSection('#experiencias')}
-              className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-bold w-full sm:w-auto px-10 shadow-lg"
+              className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-bold w-full sm:w-auto px-8 shadow-lg"
             >
               Ver Experiencias
             </Button>
           </motion.div>
 
-          {/* Stats - Left Aligned */}
+          {/* Stats - Left Aligned & Refined */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-2xl"
+            className="flex flex-wrap gap-3 md:gap-4 max-w-4xl"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -135,17 +131,19 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.7 + index * 0.1 }}
-                className="bg-white/10 backdrop-blur-md shadow-2xl rounded-2xl p-5 flex flex-col items-start border border-white/20 hover:bg-white/15 transition-all duration-300 group"
+                className="bg-white/5 backdrop-blur-md shadow-lg rounded-xl px-4 py-3 flex items-center gap-3 border border-white/10 hover:bg-white/10 transition-all duration-300 group min-w-fit"
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                  <stat.icon className="w-5 h-5 text-primary" />
+                <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                  <stat.icon className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-xl md:text-2xl font-heading font-black text-white mb-1">
-                  {stat.value}
-                </span>
-                <span className="text-[10px] md:text-xs font-heading font-bold text-gray-300 uppercase tracking-widest leading-tight">
-                  {stat.label}
-                </span>
+                <div className="flex flex-col">
+                  <span className="text-base md:text-lg font-heading font-black text-white leading-tight">
+                    {stat.value}
+                  </span>
+                  <span className="text-[9px] md:text-[10px] font-heading font-bold text-gray-300/80 uppercase tracking-widest leading-none">
+                    {stat.label}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </motion.div>

@@ -7,7 +7,10 @@ import logo from '@/assets/logo.png';
 const navItems = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#nosotros', label: 'Nosotros' },
-  { href: '#experiencias', label: 'Experiencias' },
+  { href: '#restaurante', label: 'Restaurante' },
+  { href: '#granja', label: 'Minigranja' },
+  { href: '#pesca', label: 'Pesca' },
+  { href: '#evento', label: 'Torneo' },
   { href: '#galeria', label: 'Galería' },
   { href: '#contacto', label: 'Contacto' },
 ];
@@ -26,11 +29,14 @@ export const Header = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
     setIsMobileMenuOpen(false);
+    // Use a small timeout to let the menu close animation start and DOM settle
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   return (
