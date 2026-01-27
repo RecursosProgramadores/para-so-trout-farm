@@ -6,7 +6,7 @@ import heroBackground from '@/assets/hero-background.jpg';
 
 const stats = [
   { icon: Star, value: '15+', label: 'Años de experiencia' },
-  { icon: Fish, value: '800+', label: 'Truchas en eventos' },
+  { icon: Fish, value: '600+', label: 'Truchas liberadas' },
   { icon: MapPin, value: 'Cajamarca', label: 'Namora, Perú' },
 ];
 

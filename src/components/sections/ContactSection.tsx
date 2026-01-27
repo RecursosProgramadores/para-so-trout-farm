@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 
 const contactInfo = [
-  { icon: MapPin, label: 'Ubicación', value: 'Cajamarca - La Mora, Perú' },
+  { icon: MapPin, label: 'Ubicación', value: 'Cajamarca - Caserio La Perla _ Namora' },
   { icon: Mail, label: 'Email', value: 'javioq@hotmail.com', href: 'mailto:javioq@hotmail.com' },
   { icon: Phone, label: 'Teléfono', value: '+51 929 003 722', href: 'tel:+51929003722' },
   { icon: Clock, label: 'Horario', value: 'Lun - Dom: 10:00 AM - 4:00 PM' },

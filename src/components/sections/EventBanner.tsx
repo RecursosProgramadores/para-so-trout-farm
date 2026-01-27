@@ -49,7 +49,7 @@ export const EventBanner = () => {
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
               ¡No te pierdas nuestro evento anual más esperado! Celebramos el Día del Pescador
-              con la <span className="text-primary font-semibold">suelta de 800 truchas</span> al río,
+              con la <span className="text-primary font-semibold">liberación de 600 truchas</span> al río,
               competencias de pesca deportiva y premios increíbles.
             </p>
 
@@ -136,7 +136,7 @@ export const EventBanner = () => {
               {/* Info Badges Below Video */}
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                 <div className="bg-black/80 backdrop-blur-md border border-primary/30 p-4 rounded-2xl shadow-xl flex items-center justify-center gap-4 group/item hover:bg-black/90 transition-colors">
-                  <div className="text-4xl font-heading font-black text-primary">800+</div>
+                  <div className="text-4xl font-heading font-black text-primary">600+</div>
                   <div className="text-sm font-heading text-white font-black uppercase tracking-wider leading-tight">
                     Truchas<br />liberadas
                   </div>

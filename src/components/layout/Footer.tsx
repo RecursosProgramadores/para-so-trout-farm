@@ -16,7 +16,6 @@ const footerLinks = [
 const socialLinks = [
   { icon: Youtube, href: 'https://www.youtube.com/@javierordonezquiroz6312', label: 'YouTube' },
   { icon: Facebook, href: 'https://www.facebook.com/share/1B4Y8Hf9cs/', label: 'Facebook' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
 ];
 
 export const Footer = () => {
